@@ -1,6 +1,6 @@
 rm -Rf custom-jvm
 
-EXCLUDE_MODULES="java.compiler java.scripting jdk.javadoc jdk.jdwp.agent java.rmi java.management.rmi jdk.compiler jdk.jshell jdk.attach jdk.editpad jdk.jconsole jdk.jdeps jdk.jlink jdk.jdi jdk.jpackage jdk.jsobject jdk.jartool jdk.jstatd jdk.management.agent"
+EXCLUDE_MODULES="jdk.httpserver jdk.naming.rmi jdk.management.jfr jdk.jfr java.compiler java.scripting jdk.javadoc jdk.jdwp.agent java.rmi java.management.rmi jdk.compiler jdk.jshell jdk.attach jdk.editpad jdk.jconsole jdk.jdeps jdk.jlink jdk.jdi jdk.jpackage jdk.jsobject jdk.jartool jdk.jstatd jdk.management.agent"
 
 #Generate full list of modules:
 MOD_ALL=$(java ModulesList.java $EXCLUDE_MODULES)
@@ -11,7 +11,7 @@ echo "Generating optimised JVM with modules: $MOD_ALL"
 # --strip-native-commands --strip-debug --no-man-pages --no-header-files
 
 # JLink tuning:
-JLINK_OPTS="--strip-debug --no-man-pages --no-header-files --strip-native-debug-symbols exclude-debuginfo-files --compress 0 --dedup-legal-notices error-if-not-same-content"
+JLINK_OPTS="--strip-debug --no-man-pages --no-header-files --strip-native-debug-symbols exclude-debuginfo-files --compress 0 --dedup-legal-notices error-if-not-same-content --generate-cds-archive"
 
 ## Notes
 # --compress 0 seems to save more RSS at runtime than --compress 1, but makes the modules file large: 79MB
