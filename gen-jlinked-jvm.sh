@@ -9,6 +9,7 @@ EXCLUDE_MODULES="jdk.httpserver jdk.naming.rmi jdk.management.jfr jdk.jfr java.c
 #Generate full list of modules:
 MOD_ALL=$($JLINK_JDK/bin/java ModulesList.java $EXCLUDE_MODULES)
 
+echo "Input JDK size: $(du -sh "$JLINK_JDK" | cut -f1)"
 echo "Generating optimised JVM with modules: $MOD_ALL"
 
 # Used by JPackage:
@@ -30,6 +31,8 @@ $JLINK_JDK/bin/jlink --add-modules $MOD_ALL $JLINK_OPTS --output custom-jvm
 # --vm server --strip-native-commands
 
 NEWJDK="$(pwd)/custom-jvm"
+
+echo "Done! Custom JDK created at $NEWJDK (size: $(du -sh "$NEWJDK" | cut -f1))"
 
 export JAVA_ROOT=$NEWJDK
 export JAVA_HOME=$NEWJDK
