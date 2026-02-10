@@ -4,7 +4,7 @@ rm -Rf custom-jvm
 # with distribution-packaged JDKs (e.g., Fedora's OpenJDK in '/usr/lib/jvm/java-25-openjdk' has a modified security setting making it unsuitable for JLink usage)
 JLINK_JDK="/home/sanne/tools/jdk-25.0.2+10"
 
-EXCLUDE_MODULES="jdk.httpserver jdk.naming.rmi jdk.management.jfr jdk.jfr java.compiler java.scripting jdk.javadoc jdk.jdwp.agent java.rmi java.management.rmi jdk.compiler jdk.jshell jdk.attach jdk.editpad jdk.jconsole jdk.jdeps jdk.jlink jdk.jdi jdk.jpackage jdk.jsobject jdk.jartool jdk.jstatd jdk.management.agent"
+EXCLUDE_MODULES="jdk.httpserver jdk.naming.rmi java.compiler java.scripting jdk.javadoc jdk.jdwp.agent java.rmi java.management.rmi jdk.compiler jdk.jshell jdk.attach jdk.editpad jdk.jconsole jdk.jdeps jdk.jlink jdk.jdi jdk.jpackage jdk.jsobject jdk.jartool jdk.jstatd jdk.management.agent"
 
 #Generate full list of modules:
 MOD_ALL=$($JLINK_JDK/bin/java ModulesList.java $EXCLUDE_MODULES)
