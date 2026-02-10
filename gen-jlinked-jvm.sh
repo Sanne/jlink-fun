@@ -18,7 +18,7 @@ echo "Generating optimised JVM with modules: $MOD_ALL"
 # Todo: can no longer use `--compress 0` as it's no longer supported - annoying? verify impact
 
 # JLink tuning:
-JLINK_OPTS="--compress zip-0 --strip-debug --no-man-pages --no-header-files --dedup-legal-notices error-if-not-same-content --generate-cds-archive"
+JLINK_OPTS="--compress zip-0 --strip-debug --no-man-pages --no-header-files --dedup-legal-notices error-if-not-same-content --generate-cds-archive --vm server --include-locales=en"
 
 ## Notes (legacy: parameter semantics changed in recent JDKs)
 # --compress 0 seems to save more RSS at runtime than --compress 1, but makes the modules file large: 79MB
